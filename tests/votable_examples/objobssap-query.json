@@ -1,0 +1,155 @@
+{
+  "version": "1.4",
+  "resources": [
+    {
+      "type": "results",
+      "infos": [
+        {
+          "ID": "QUERY_STATUS",
+          "name": "QUERY_STATUS",
+          "value": "OVERFLOW"
+        }
+      ],
+      "tables": [
+        {
+          "fields": [
+            {
+              "ID": "t_validity",
+              "datatype": "float",
+              "name": "t_validity",
+              "ucd": "time.validity",
+              "unit": "d",
+              "utype": "Char.TimeAxis.Coverage.Time"
+            },
+            {
+              "ID": "validity_accuracy",
+              "arraysize": "*",
+              "datatype": "char",
+              "name": "validity_accuracy"
+            },
+            {
+              "ID": "validity_predictor",
+              "arraysize": "*",
+              "datatype": "char",
+              "name": "validity_predictor"
+            },
+            {
+              "ID": "t_start",
+              "datatype": "float",
+              "name": "t_start",
+              "ucd": "time.start",
+              "unit": "d",
+              "utype": "Char.TimeAxis.Coverage.Bounds.Limits.StartTime"
+            },
+            {
+              "ID": "t_stop",
+              "datatype": "float",
+              "name": "t_stop",
+              "ucd": "time.end",
+              "unit": "d",
+              "utype": "Char.TimeAxis.Coverage.Bounds.Limits.StopTime"
+            },
+            {
+              "ID": "t_observability",
+              "datatype": "float",
+              "name": "t_observability",
+              "ucd": "time.duration",
+              "unit": "s",
+              "utype": "Char.TimeAxis.Coverage.Support.Extent"
+            },
+            {
+              "ID": "facility",
+              "arraysize": "*",
+              "datatype": "char",
+              "name": "facility",
+              "ucd": "meta.id;instr.tel",
+              "utype": "Char.SpatialAxis.Coverage.Provenance.ObsConfig.Facility.name"
+            }
+          ],
+          "data": {
+            "tabledata": [
+              [
+                59532.84501437051,
+                "HIGH",
+                "Example Observatory",
+                59522.84501437051,
+                59523.39025272895,
+                47108.59416872263,
+                "Example Observatory"
+              ],
+              [
+                59533.84228189103,
+                "HIGH",
+                "Example Observatory",
+                59523.84228189103,
+                59524.38752228534,
+                47108.770067989826,
+                "Example Observatory"
+              ],
+              [
+                59534.83955140039,
+                "HIGH",
+                "Example Observatory",
+                59524.83955140039,
+                59525.38479184639,
+                47108.774533867836,
+                "Example Observatory"
+              ]
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "type": "meta",
+      "utype": "adhoc:service",
+      "params": [
+        {
+          "ID": "standardID",
+          "arraysize": "*",
+          "datatype": "char",
+          "name": "standardID",
+          "value": "ivo://ivoa.net/std/ObjObsSAP#query-0.3"
+        },
+        {
+          "ID": "accessURL",
+          "arraysize": "*",
+          "datatype": "char",
+          "name": "accessURL",
+          "value": "http://example.com/objobssap/query"
+        }
+      ],
+      "groups": [
+        {
+          "ID": "inputParams",
+          "name": "inputParams",
+          "params": [
+            {
+              "ID": "pos",
+              "arraysize": "*",
+              "datatype": "char",
+              "name": "pos",
+              "value": null
+            },
+            {
+              "ID": "time",
+              "arraysize": "*",
+              "datatype": "float",
+              "name": "time",
+              "unit": "d",
+              "value": null
+            },
+            {
+              "ID": "min_obs",
+              "arraysize": "*",
+              "datatype": "float",
+              "name": "min_obs",
+              "unit": "s",
+              "value": null
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

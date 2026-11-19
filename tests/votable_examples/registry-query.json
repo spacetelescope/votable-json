@@ -1,0 +1,193 @@
+{
+  "version": "1.4",
+  "resources": [
+    {
+      "type": "results",
+      "infos": [
+        {
+          "name": "QUERY_STATUS",
+          "value": "OK"
+        },
+        {
+          "name": "QUERY",
+          "value": "SELECT TOP 2* from rr.resource"
+        }
+      ],
+      "tables": [
+        {
+          "fields": [
+            {
+              "name": "ivoid",
+              "datatype": "char",
+              "arraysize": "*",
+              "utype": "xpath:identifier",
+              "description": "Unambiguous reference to the resource conforming to the IVOA standard for identifiers"
+            },
+            {
+              "name": "res_type",
+              "datatype": "char",
+              "arraysize": "*",
+              "utype": "xpath:@xsi:type",
+              "description": "Resource type (something like vs:datacollection, vs:catalogservice, etc)"
+            },
+            {
+              "name": "created",
+              "datatype": "char",
+              "arraysize": "*",
+              "utype": "xpath:@created",
+              "description": "The UTC date and time this resource metadata description was created. This timestamp must not be in the future. This time is not required to be accurate; it should be at least accurate to the day. Any insignificant time fields should be set to zero."
+            },
+            {
+              "name": "short_name",
+              "datatype": "char",
+              "arraysize": "*",
+              "utype": "xpath:shortName",
+              "description": "A short name or abbreviation given to something. This name will be used where brief annotations for the resource name are required. Applications may use it to refer to the resource in a compact display. One word or a few letters is recommended. No more than sixteen characters are allowed."
+            },
+            {
+              "name": "res_title",
+              "datatype": "unicodeChar",
+              "arraysize": "*",
+              "utype": "xpath:title",
+              "description": "The full name given to the resource"
+            },
+            {
+              "name": "updated",
+              "datatype": "char",
+              "arraysize": "*",
+              "utype": "xpath:@updated",
+              "description": "The UTC date this resource metadata description was last updated. This timestamp must not be in the future. This time is not required to be accurate; it should be at least accurate to the day. Any insignificant time fields should be set to zero."
+            },
+            {
+              "name": "content_level",
+              "datatype": "char",
+              "arraysize": "*",
+              "utype": "xpath:content/contentLevel",
+              "description": "A hash-separated list of content levels specifying the intended audience"
+            },
+            {
+              "name": "res_description",
+              "datatype": "unicodeChar",
+              "arraysize": "*",
+              "utype": "xpath:content/description",
+              "description": "An account of the nature of the resource."
+            },
+            {
+              "name": "reference_url",
+              "datatype": "char",
+              "arraysize": "*",
+              "utype": "xpath:content/referenceURL",
+              "description": "URL pointing to a human-readable document describing this resource."
+            },
+            {
+              "name": "creator_seq",
+              "datatype": "char",
+              "arraysize": "*",
+              "utype": "xpath:curation/creator/name",
+              "description": "The creator(s) of the resource in the order given by the resource record author, separated by semicolons."
+            },
+            {
+              "name": "content_type",
+              "datatype": "char",
+              "arraysize": "*",
+              "utype": "xpath:content/type",
+              "description": "A hash-separated list of natures or genres of the content of the resource."
+            },
+            {
+              "name": "source_format",
+              "datatype": "char",
+              "arraysize": "*",
+              "utype": "xpath:content/source/@format",
+              "description": "The format of source_value. Recognized values include \"bibcode\", referring to a standard astronomical bibcode (http://cdsweb.u-strasbg.fr/simbad/refcode.html)."
+            },
+            {
+              "name": "source_value",
+              "datatype": "char",
+              "arraysize": "*",
+              "utype": "xpath:content/source",
+              "description": "A bibliographic reference from which the present resource is derived or extracted."
+            },
+            {
+              "name": "res_version",
+              "datatype": "char",
+              "arraysize": "*",
+              "utype": "xpath:curation/version",
+              "description": "Label associated with creation or availablilty of a version of a resource."
+            },
+            {
+              "name": "region_of_regard",
+              "datatype": "float",
+              "utype": "xpath:coverage/regionOfRegard",
+              "description": "A single numeric value representing the angle, given in decimal degrees, by which a positional query against this resource should be \"blurred\" in order to get an appropriate match."
+            },
+            {
+              "name": "waveband",
+              "datatype": "char",
+              "arraysize": "*",
+              "utype": "xpath:coverage/waveband",
+              "description": "A hash-separated list of regions of the electro-magnetic spectrum that the resource's spectral coverage overlaps with."
+            },
+            {
+              "name": "rights",
+              "datatype": "char",
+              "arraysize": "*",
+              "utype": "xpath:rights",
+              "description": "Information about rights held in and over the resource (multiple values are separated by hashes)."
+            },
+            {
+              "name": "rights_uri",
+              "datatype": "char",
+              "arraysize": "*",
+              "utype": "xpath:rights/@rightsURI",
+              "description": "A URI identifying a license the data is made available under."
+            }
+          ],
+          "data": {
+            "tabledata": [
+              [
+                "ivo://cds.vizier/j/apjs/126/19",
+                "vs:catalogservice",
+                "2002-08-26 11:20:31",
+                "J/ApJS/126/19",
+                "BATSE gamma-ray burst spectral catalog. I.",
+                "2021-10-21 00:00:00",
+                "research",
+                "This is the first in a series of gamma-ray burst spectroscopy catalogs from the Burst and Transient Source Experiment (BATSE) on the Compton Gamma Ray Observatory, each covering a different aspect of burst phenomenology. In this paper, we present time sequences of spectral fit parameters for 156 bursts selected for either their high peak flux or fluence. All bursts have at least eight spectra in excess of 45{sigma} above background and span burst durations from 1.66 to 278s. Individual spectral accumulations are typically 128ms long at the peak of the brightest events but can be as short as 16ms, depending on the type of data selected. We have used mostly high energy resolution data from the Large Area Detectors, covering an energy range of typically 28-1800keV. The spectral model chosen is from a small empirically determined set of functions, such as the well-known \"GRB\" function, that best fits the time-averaged burst spectra. Thus, there are generally three spectral shape parameters available for each of the 5500 total spectra: a low-energy power-law index, a characteristic break energy, and possibly a high-energy power-law index. We present the distributions of the observed sets of these parameters and comment on their implications.",
+                "http://cdsarc.unistra.fr/cgi-bin/cat/J/ApJS/126/19",
+                null,
+                "catalog",
+                "bibcode",
+                "2000ApJS..126...19P",
+                null,
+                null,
+                "gamma-ray",
+                "public",
+                null
+              ],
+              [
+                "ivo://cds.vizier/j/apj/648/629",
+                "vs:catalogservice",
+                "2008-10-14 17:51:19",
+                "J/ApJ/648/629",
+                "Radio observations of late M, L, and T dwarfs",
+                "2021-10-21 00:00:00",
+                "research",
+                "I present radio observations of 90 dwarf stars and brown dwarfs of spectral type M5-T8. Three sources exhibit radio activity, in addition to the six objects previously detected in quiescence and outburst, leading to an overall detection rate of ~10% for objects later than M7.",
+                "https://cdsarc.cds.unistra.fr/viz-bin/cat/J/ApJ/648/629",
+                null,
+                "catalog",
+                "bibcode",
+                "2006ApJ...648..629B",
+                null,
+                null,
+                "radio",
+                "public",
+                null
+              ]
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}

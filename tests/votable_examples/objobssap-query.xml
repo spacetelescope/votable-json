@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+  <!-- Produced with astropy.io.votable version 7.1.0
+     http://www.astropy.org/ -->
+  <VOTABLE version="1.4" xmlns="http://www.ivoa.net/xml/VOTable/v1.3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.ivoa.net/xml/VOTable/v1.3 http://www.ivoa.net/xml/VOTable/VOTable-1.4.xsd">
+    <RESOURCE type="results">
+      <INFO ID="QUERY_STATUS" name="QUERY_STATUS" value="OVERFLOW"/>
+      <TABLE>
+        <FIELD ID="t_validity" datatype="float" name="t_validity" ucd="time.validity" unit="d" utype="Char.TimeAxis.Coverage.Time"/>
+        <FIELD ID="validity_accuracy" arraysize="*" datatype="char" name="validity_accuracy"/>
+        <FIELD ID="validity_predictor" arraysize="*" datatype="char" name="validity_predictor"/>
+        <FIELD ID="t_start" datatype="float" name="t_start" ucd="time.start" unit="d" utype="Char.TimeAxis.Coverage.Bounds.Limits.StartTime"/>
+        <FIELD ID="t_stop" datatype="float" name="t_stop" ucd="time.end" unit="d" utype="Char.TimeAxis.Coverage.Bounds.Limits.StopTime"/>
+        <FIELD ID="t_observability" datatype="float" name="t_observability" ucd="time.duration" unit="s" utype="Char.TimeAxis.Coverage.Support.Extent"/>
+        <FIELD ID="facility" arraysize="*" datatype="char" name="facility" ucd="meta.id;instr.tel" utype="Char.SpatialAxis.Coverage.Provenance.ObsConfig.Facility.name"/>
+        <DATA>
+          <TABLEDATA>
+            <TR>
+              <TD>59532.84501437051</TD>
+              <TD>HIGH</TD>
+              <TD>Example Observatory</TD>
+              <TD>59522.84501437051</TD>
+              <TD>59523.39025272895</TD>
+              <TD>47108.59416872263</TD>
+              <TD>Example Observatory</TD>
+            </TR>
+            <TR>
+              <TD>59533.84228189103</TD>
+              <TD>HIGH</TD>
+              <TD>Example Observatory</TD>
+              <TD>59523.84228189103</TD>
+              <TD>59524.38752228534</TD>
+              <TD>47108.770067989826</TD>
+              <TD>Example Observatory</TD>
+            </TR>
+            <TR>
+              <TD>59534.83955140039</TD>
+              <TD>HIGH</TD>
+              <TD>Example Observatory</TD>
+              <TD>59524.83955140039</TD>
+              <TD>59525.38479184639</TD>
+              <TD>47108.774533867836</TD>
+              <TD>Example Observatory</TD>
+            </TR>
+          </TABLEDATA>
+        </DATA>
+      </TABLE>
+    </RESOURCE>
+    <RESOURCE type="meta" utype="adhoc:service">
+      <PARAM ID="standardID" arraysize="*" datatype="char" name="standardID" value="ivo://ivoa.net/std/ObjObsSAP#query-0.3"/>
+      <PARAM ID="accessURL" arraysize="*" datatype="char" name="accessURL" value="http://example.com/objobssap/query"/>
+      <GROUP ID="inputParams" name="inputParams">
+        <PARAM ID="pos" arraysize="*" datatype="char" name="pos" value=""/>
+        <PARAM ID="time" arraysize="*" datatype="float" name="time" unit="d" value=""/>
+        <PARAM ID="min_obs" arraysize="*" datatype="float" name="min_obs" unit="s" value=""/>
+      </GROUP>
+    </RESOURCE>
+  </VOTABLE>

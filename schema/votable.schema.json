@@ -1,0 +1,526 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.org/navo/votable-json/v0.1/votable.schema.json",
+  "title": "VOTable JSON serialization (draft 0.1)",
+  "description": "JSON serialization of a VOTable document, with OpenAPI 3.1 `xml` annotations for VOTable 1.4/1.5 XML.",
+  "$ref": "#/$defs/VOTable",
+  "$defs": {
+    "VOTable": {
+      "type": "object",
+      "xml": {
+        "name": "VOTABLE",
+        "namespace": "http://www.ivoa.net/xml/VOTable/v1.3"
+      },
+      "required": ["resources"],
+      "properties": {
+        "ID": { "$ref": "#/$defs/ID" },
+        "version": {
+          "type": "string",
+          "enum": ["1.3", "1.4", "1.5", "1.6"],
+          "xml": { "attribute": true }
+        },
+        "description": { "$ref": "#/$defs/Description" },
+        "coosys": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/CoordinateSystem" }
+        },
+        "timesys": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/TimeSystem" }
+        },
+        "groups": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/Group" }
+        },
+        "params": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/Param" }
+        },
+        "infos": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/Info" }
+        },
+        "resources": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "$ref": "#/$defs/Resource" }
+        }
+      },
+      "additionalProperties": false
+    },
+
+    "Resource": {
+      "type": "object",
+      "xml": { "name": "RESOURCE" },
+      "properties": {
+        "ID": { "$ref": "#/$defs/ID" },
+        "name": { "$ref": "#/$defs/Name" },
+        "utype": { "$ref": "#/$defs/Utype" },
+        "type": {
+          "type": "string",
+          "enum": ["results", "meta"],
+          "default": "results",
+          "xml": { "attribute": true }
+        },
+        "description": { "$ref": "#/$defs/Description" },
+        "infos": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/Info" }
+        },
+        "coosys": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/CoordinateSystem" }
+        },
+        "timesys": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/TimeSystem" }
+        },
+        "groups": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/Group" }
+        },
+        "params": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/Param" }
+        },
+        "links": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/Link" }
+        },
+        "tables": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/Table" }
+        },
+        "resources": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/Resource" }
+        }
+      },
+      "additionalProperties": false
+    },
+
+    "Table": {
+      "type": "object",
+      "xml": { "name": "TABLE" },
+      "properties": {
+        "ID": { "$ref": "#/$defs/ID" },
+        "name": { "$ref": "#/$defs/Name" },
+        "ref": { "$ref": "#/$defs/Ref" },
+        "ucd": { "$ref": "#/$defs/UCD" },
+        "utype": { "$ref": "#/$defs/Utype" },
+        "nrows": {
+          "type": "integer",
+          "minimum": 0,
+          "xml": { "attribute": true }
+        },
+        "description": { "$ref": "#/$defs/Description" },
+        "infos": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/Info" }
+        },
+        "fields": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/Field" }
+        },
+        "params": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/Param" }
+        },
+        "groups": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/Group" }
+        },
+        "links": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/Link" }
+        },
+        "data": { "$ref": "#/$defs/Data" }
+      },
+      "anyOf": [
+        { "required": ["fields"] },
+        { "required": ["params"] },
+        { "required": ["groups"] }
+      ],
+      "additionalProperties": false
+    },
+
+    "FieldAttributes": {
+      "type": "object",
+      "required": ["name", "datatype"],
+      "properties": {
+        "ID": { "$ref": "#/$defs/ID" },
+        "name": { "$ref": "#/$defs/Name" },
+        "datatype": { "$ref": "#/$defs/DataType" },
+        "arraysize": { "$ref": "#/$defs/ArraySize" },
+        "unit": {
+          "type": "string",
+          "xml": { "attribute": true }
+        },
+        "precision": {
+          "type": "string",
+          "pattern": "^[EF]?[0-9]+$",
+          "xml": { "attribute": true }
+        },
+        "width": {
+          "type": "integer",
+          "minimum": 1,
+          "xml": { "attribute": true }
+        },
+        "xtype": {
+          "type": "string",
+          "xml": { "attribute": true }
+        },
+        "ref": { "$ref": "#/$defs/Ref" },
+        "ucd": { "$ref": "#/$defs/UCD" },
+        "utype": { "$ref": "#/$defs/Utype" },
+        "description": { "$ref": "#/$defs/Description" },
+        "values": { "$ref": "#/$defs/Values" },
+        "links": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/Link" }
+        }
+      }
+    },
+
+    "Field": {
+      "type": "object",
+      "xml": { "name": "FIELD" },
+      "$ref": "#/$defs/FieldAttributes",
+      "unevaluatedProperties": false
+    },
+
+    "Param": {
+      "type": "object",
+      "xml": { "name": "PARAM" },
+      "$ref": "#/$defs/FieldAttributes",
+      "required": ["value"],
+      "properties": {
+        "value": {
+          "$ref": "#/$defs/Value",
+          "xml": { "attribute": true }
+        }
+      },
+      "unevaluatedProperties": false
+    },
+
+    "Group": {
+      "type": "object",
+      "xml": { "name": "GROUP" },
+      "properties": {
+        "ID": { "$ref": "#/$defs/ID" },
+        "name": { "$ref": "#/$defs/Name" },
+        "ref": { "$ref": "#/$defs/Ref" },
+        "ucd": { "$ref": "#/$defs/UCD" },
+        "utype": { "$ref": "#/$defs/Utype" },
+        "description": { "$ref": "#/$defs/Description" },
+        "fieldrefs": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/FieldRef" }
+        },
+        "paramrefs": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/ParamRef" }
+        },
+        "params": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/Param" }
+        },
+        "groups": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/Group" }
+        }
+      },
+      "additionalProperties": false
+    },
+
+    "FieldRef": {
+      "type": "object",
+      "xml": { "name": "FIELDref" },
+      "required": ["ref"],
+      "properties": {
+        "ref": { "$ref": "#/$defs/Ref" },
+        "ucd": { "$ref": "#/$defs/UCD" },
+        "utype": { "$ref": "#/$defs/Utype" }
+      },
+      "additionalProperties": false
+    },
+
+    "ParamRef": {
+      "type": "object",
+      "xml": { "name": "PARAMref" },
+      "required": ["ref"],
+      "properties": {
+        "ref": { "$ref": "#/$defs/Ref" },
+        "ucd": { "$ref": "#/$defs/UCD" },
+        "utype": { "$ref": "#/$defs/Utype" }
+      },
+      "additionalProperties": false
+    },
+
+    "Values": {
+      "type": "object",
+      "xml": { "name": "VALUES" },
+      "properties": {
+        "ID": { "$ref": "#/$defs/ID" },
+        "type": {
+          "type": "string",
+          "enum": ["legal", "actual"],
+          "default": "legal",
+          "xml": { "attribute": true }
+        },
+        "null": {
+          "$ref": "#/$defs/Value",
+          "xml": { "attribute": true }
+        },
+        "ref": { "$ref": "#/$defs/Ref" },
+        "min": { "$ref": "#/$defs/Limit", "xml": { "name": "MIN" } },
+        "max": { "$ref": "#/$defs/Limit", "xml": { "name": "MAX" } },
+        "options": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/Option" }
+        }
+      },
+      "additionalProperties": false
+    },
+
+    "Limit": {
+      "type": "object",
+      "required": ["value"],
+      "properties": {
+        "value": {
+          "$ref": "#/$defs/Value",
+          "xml": { "attribute": true }
+        },
+        "inclusive": {
+          "type": "string",
+          "enum": ["yes", "no"],
+          "default": "yes",
+          "xml": { "attribute": true }
+        }
+      },
+      "additionalProperties": false
+    },
+
+    "Option": {
+      "type": "object",
+      "xml": { "name": "OPTION" },
+      "required": ["value"],
+      "properties": {
+        "name": { "$ref": "#/$defs/Name" },
+        "value": {
+          "$ref": "#/$defs/Value",
+          "xml": { "attribute": true }
+        },
+        "options": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/Option" }
+        }
+      },
+      "additionalProperties": false
+    },
+
+    "Link": {
+      "type": "object",
+      "xml": { "name": "LINK" },
+      "properties": {
+        "ID": { "$ref": "#/$defs/ID" },
+        "content-role": {
+          "type": "string",
+          "xml": { "attribute": true }
+        },
+        "content-type": {
+          "type": "string",
+          "xml": { "attribute": true }
+        },
+        "title": {
+          "type": "string",
+          "xml": { "attribute": true }
+        },
+        "value": {
+          "type": "string",
+          "xml": { "attribute": true }
+        },
+        "href": {
+          "type": "string",
+          "format": "uri-reference",
+          "xml": { "attribute": true }
+        },
+        "action": {
+          "type": "string",
+          "format": "uri-reference",
+          "xml": { "attribute": true }
+        }
+      },
+      "additionalProperties": false
+    },
+
+    "Info": {
+      "type": "object",
+      "xml": { "name": "INFO" },
+      "required": ["name", "value"],
+      "properties": {
+        "ID": { "$ref": "#/$defs/ID" },
+        "name": { "$ref": "#/$defs/Name" },
+        "value": {
+          "type": "string",
+          "xml": { "attribute": true }
+        },
+        "unit": {
+          "type": "string",
+          "xml": { "attribute": true }
+        },
+        "xtype": {
+          "type": "string",
+          "xml": { "attribute": true }
+        },
+        "ref": { "$ref": "#/$defs/Ref" },
+        "ucd": { "$ref": "#/$defs/UCD" },
+        "utype": { "$ref": "#/$defs/Utype" },
+        "content": {
+          "type": "string",
+          "description": "Text content of the INFO element.",
+          "xml": { "x-nodeType": "text" }
+        }
+      },
+      "additionalProperties": false
+    },
+
+    "CoordinateSystem": {
+      "type": "object",
+      "xml": { "name": "COOSYS" },
+      "required": ["ID"],
+      "properties": {
+        "ID": { "$ref": "#/$defs/ID" },
+        "system": {
+          "type": "string",
+          "default": "FK5",
+          "description": "Term from http://www.ivoa.net/rdf/refframe",
+          "xml": { "attribute": true }
+        },
+        "equinox": { "$ref": "#/$defs/AstroYear" },
+        "epoch": { "$ref": "#/$defs/AstroYear" },
+        "refposition": {
+          "type": "string",
+          "description": "Term from http://www.ivoa.net/rdf/refposition",
+          "xml": { "attribute": true }
+        }
+      },
+      "additionalProperties": false
+    },
+
+    "TimeSystem": {
+      "type": "object",
+      "xml": { "name": "TIMESYS" },
+      "required": ["ID", "timescale", "refposition"],
+      "properties": {
+        "ID": { "$ref": "#/$defs/ID" },
+        "timeorigin": {
+          "description": "Julian Date of the time origin, or one of the magic strings.",
+          "oneOf": [
+            { "type": "number" },
+            { "type": "string", "enum": ["JD-origin", "MJD-origin"] }
+          ],
+          "xml": { "attribute": true }
+        },
+        "timescale": {
+          "type": "string",
+          "description": "Term from http://www.ivoa.net/rdf/timescale",
+          "xml": { "attribute": true }
+        },
+        "refposition": {
+          "type": "string",
+          "description": "Term from http://www.ivoa.net/rdf/refposition",
+          "xml": { "attribute": true }
+        }
+      },
+      "additionalProperties": false
+    },
+
+    "Data": {
+      "type": "object",
+      "xml": { "name": "DATA" },
+      "required": ["tabledata"],
+      "properties": {
+        "tabledata": {
+          "description": "Rows of the table. Each row holds one cell per FIELD, in FIELD order.",
+          "type": "array",
+          "xml": { "name": "TABLEDATA", "wrapped": true },
+          "items": {
+            "type": "array",
+            "xml": { "name": "TR", "wrapped": true },
+            "items": {
+              "$ref": "#/$defs/Value",
+              "xml": { "name": "TD" }
+            }
+          }
+        },
+        "infos": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/Info" }
+        }
+      },
+      "additionalProperties": false
+    },
+
+    "Value": {
+      "description": "A typed value for a FIELD/PARAM. The JSON type is fixed by the governing datatype and arraysize; see NOTES.md for the mapping. null means no value.",
+      "type": ["string", "number", "boolean", "array", "null"],
+      "items": { "$ref": "#/$defs/Value" }
+    },
+
+    "Description": {
+      "type": "string",
+      "xml": { "name": "DESCRIPTION" }
+    },
+
+    "DataType": {
+      "type": "string",
+      "enum": [
+        "boolean", "bit", "unsignedByte", "short", "int", "long",
+        "char", "unicodeChar", "float", "double",
+        "floatComplex", "doubleComplex"
+      ],
+      "xml": { "attribute": true }
+    },
+
+    "ArraySize": {
+      "type": "string",
+      "pattern": "^([0-9]+x)*([0-9]+\\*?|\\*)$",
+      "xml": { "attribute": true }
+    },
+
+    "AstroYear": {
+      "type": "string",
+      "pattern": "^[JB]?[0-9]+([.][0-9]*)?$",
+      "xml": { "attribute": true }
+    },
+
+    "ID": {
+      "type": "string",
+      "pattern": "^[A-Za-z_][A-Za-z0-9_.\\-]*$",
+      "xml": { "attribute": true }
+    },
+
+    "Ref": {
+      "type": "string",
+      "description": "The ID of another element in the same document.",
+      "xml": { "attribute": true }
+    },
+
+    "Name": {
+      "type": "string",
+      "xml": { "attribute": true }
+    },
+
+    "UCD": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9_.:;\\-]*$",
+      "xml": { "attribute": true }
+    },
+
+    "Utype": {
+      "type": "string",
+      "xml": { "attribute": true }
+    }
+  }
+}
